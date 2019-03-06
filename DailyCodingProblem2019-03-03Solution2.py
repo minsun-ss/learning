@@ -6,16 +6,15 @@
 
 # Follow-up: what if you can't use division?
 
+import numpy as np
+
 A = [1, 2, 3, 4, 5]
 # expected output would be [120,60,40,30,24]
 
-productsum = 1
-for i in A:
-    productsum = productsum * i
+R = [1] * len(A)
+for i in range(len(A)):
+    temp = [A[i]] * 4
+    temp.insert(i,1)
+    R = list(np.multiply(R,temp))
 
-output = []
-for i in A:
-    product = productsum // i
-    output.append(product)
-
-print(output)
+print(R)
