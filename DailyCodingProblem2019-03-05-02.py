@@ -7,14 +7,10 @@
 # You can modify the input array in-place.
 
 # Not so sure if this is the most efficient way to go.
-A = [1, -1, 3, 1]
+
+A = [3, 4, -1, 1]
 # answer is 2
 
-sublist = sorted([i for i in A if i >= 1])
-
-for i in range(1, max(A)+2):
-    if i in sublist:
-        pass
-    else:
-        break
-print(i)
+for i in range(1,len(A)+2):
+    if i not in A:
+        print(i)
