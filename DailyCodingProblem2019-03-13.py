@@ -57,5 +57,5 @@ class Node:
 
 
 root = Node(4,0)
-root.add_steps(N, A)
+root.add_steps(N, B)
 print(root.count_leaves())
