@@ -11,10 +11,7 @@ bound = (0,1)
 
 
 def in_circle(x, y):
-    if (x**2 + y**2) < 1:
-        return True
-    else:
-        return False
+    return (x**2 + y**2) < 1
 
 num_in_circle = 0
 for _ in range(num_samples):
