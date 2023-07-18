@@ -8,7 +8,6 @@ using namespace std;
 
 // cursed globals
 double SQUAREROOT2PI = pow(2*3.1415926, 0.5);
-const double root2Pi = sqrt( 2.0 * 3.141592653589793 );
 
 int sumToN(int);
 int printAToB(int, int);
@@ -20,15 +19,16 @@ double hornerFunction(double, double, double, double, double);
 double hornerFunction(double, double, double, double, double, double);
 double hornerFunction(double, double, double, double, double, double, double);
 double hornerFunction(double, double, double, double, double, double, double, double);
-double hornerCDF(int);
+double hornerCDF(double);
 double normcdfHorner(double);
 
 int main() {
-    cout << "Norm 0,1, 2, 3, " <<
+    //cout << "Norm 0,1, 2, 3, " << endl <<
         //hornerCDF(0) << " " <<
-        normcdfHorner(1) << " " <<
-        normcdfHorner(2) << " " <<
-        normcdfHorner(3) << endl;
+        normcdfHorner(1); 
+        hornerCDF(1); 
+        //normcdfHorner(2) << " " <<
+        //normcdfHorner(3) << endl
     return 0;
 }
 
@@ -106,13 +106,16 @@ double hornerFunction(double k, double a0, double a1, double a2, double a3, doub
 }
 
 
-double hornerCDF(int n) {
+double hornerCDF(double n) {
     if (n < 0) {
         return 1-hornerCDF(n*-1);
     }
-    double k = 1 / (1+0.2316519*n);
-    double poly = hornerFunction(k, 0.0, .319381530, -0.356563782, 1.781477937, -1.821255978, 1.330274429);
-    double v = 1 - (1/(SQUAREROOT2PI)*std::exp(-1*n*n/2));
+    double k = 1 / (1+0.2316419*n);
+    double poly = hornerFunction(k, 
+            0.0, .319381530, -0.356563782, 
+            1.781477937, -1.821255978, 1.330274429);
+    double v = 1 - (1/(SQUAREROOT2PI)*std::exp(-.5*n*n)*poly);
+    cout << k << " " << poly << " " << v << " " << endl;
     return v * poly;
 }
 
@@ -124,6 +127,8 @@ double normcdfHorner( double x ) {
     double poly = hornerFunction(k,
                                  0.0, 0.319381530, -0.356563782,
                                  1.781477937,-1.821255978,1.330274429);
-    double approx = 1.0 - 1.0/root2Pi * exp(-0.5*x*x) * poly;
+    double v = 1.0 - 1.0/SQUAREROOT2PI * exp(-0.5*x*x);
+    double approx = 1.0 - 1.0/SQUAREROOT2PI * exp(-0.5*x*x) * poly;
+    cout << k << " " << poly << " " << approx << endl;
     return approx;
 }
