@@ -41,9 +41,10 @@ double hornerFunction(double, double, double, double, double, double, double, do
 double hornerFunction(double, double, double, double, double, double, double, double, double, double);
 double hornerCDF(double);
 double norminv(double);
+double blackScholesCallPrice(double strike, double ttm, double spot, double vol, double r);
 
 int main() {    
-    cout << norminv(0.4) << endl;
+    cout << blackScholesCallPrice(100, 10, 90, .25, .05) << endl;
     return 0;
 }
 
@@ -167,3 +168,13 @@ double norminv(double x) {
 
 }
 
+double blackScholesCallPrice(double strike, double ttm, double spot, double vol, double r) {
+    double d1 = 1/(vol*std::sqrt(ttm)) 
+        * (std::log(spot/strike) 
+                * + (r + (vol * vol / 2))*std::sqrt(ttm));
+    double d2 = 1/(vol*std::sqrt(ttm)) 
+        * (std::log(spot/strike) 
+                * + (r - (vol * vol /2))*std::sqrt(ttm));
+    double C = normcdf(d1)*spot - normcdf(d2)*strike*std::exp(-r*ttm);
+    return C;
+}
