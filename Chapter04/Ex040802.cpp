@@ -4,17 +4,27 @@
 // where h = b-a/n. Wirte a function that computes the rectangle rule
 // approximation to a-b sin(x)dx for given a, b and n.
 
-double rectanglerule(int, int, int);
+double rectanglerule(double, double, int);
+double integrateSin(double, double, int);
 
 #include <iostream>
+#include <cmath>
 using namespace std;
 
+
 int main() {
-    cout << rectanglerule(1, 2, 5) << endl;
+    cout << rectanglerule(1.0, 2.0, 5) << endl; 
     return 0;
 }
 
-int rectanglerule(int a, int b, int n) {
-
+double rectanglerule(double a, double b, int n) {
+    double rectresult = 0;
+    double h = (b-a)/n;
+    for (int i=0; i<n; i++) {
+        double blah = (h*(i+0.5)+a);
+        cout << blah << endl;
+        rectresult += sin(blah);
+    }
+    return rectresult/n;
 }
-    
+
