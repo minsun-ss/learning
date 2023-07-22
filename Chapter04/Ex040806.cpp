@@ -37,10 +37,10 @@ double hornerFunction(double, double, double, double, double, double, double, do
 double hornerFunction(double, double, double, double, double, double, double, double, double);
 double hornerFunction(double, double, double, double, double, double, double, double, double, double);
 double hornerCDF(double);
-double norminv(double, bool);
+double norminv(double, bool checkRange=true);
 
 int main() {    
-    cout << norminv(.75, true) << endl;
+    cout << norminv(.75) << endl;
     cout << norminv(1.0, false) << endl;
     return 0;
 }
@@ -80,7 +80,7 @@ double hornerFunction(double k, double a0, double a1, double a2, double a3, doub
 }
 
 
-double norminv(double x, bool checkRange = true) {
+double norminv(double x, bool checkRange) {
     if (checkRange) {
         if ((x<0) | (x>=1)) {
             throw logic_error("Norminv ranges are between 0 and 1");
