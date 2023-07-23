@@ -1,4 +1,6 @@
 #pragma once
 
-double radius();
+double area(double);
+
+double circumference(double);
 

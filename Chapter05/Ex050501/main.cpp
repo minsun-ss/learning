@@ -4,6 +4,7 @@ using namespace std;
 
 
 int main() {
-    cout << radius() << endl;
+    cout << area(3) << "\n" 
+        << circumference(3) << endl;
     return 0;
 }
