@@ -15,3 +15,14 @@ using namespace std;
 int main() {
     testGeometryLib();
 }
+
+/** 
+ * Ex 6.6.3
+ * Unit test function testNormcdf is marked as static
+ * void. Why? Cos it's hidden and returns nothing.
+ * Test function testMatlib is marked as void
+ * but not static. Why not. Void cos it returns
+ * nothing but not static because it's being run in main.
+ */
+
+

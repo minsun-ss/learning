@@ -101,6 +101,17 @@ double norminv( double x ) {
   }
 }
  
+double blackScholesCallPut(double strike, double ttm, double spot, double vol, double r) {
+    double d1 = 1/(vol*std::sqrt(ttm)) 
+        * (std::log(spot/strike) 
+                * + (r + (vol * vol / 2))*std::sqrt(ttm));
+    double d2 = 1/(vol*std::sqrt(ttm)) 
+        * (std::log(spot/strike) 
+                * + (r - (vol * vol /2))*std::sqrt(ttm));
+    double C = normcdf(d1)*spot - normcdf(d2)*strike*std::exp(-r*ttm);
+    double P = normcdf(-1*d2) * strike * std::exp(-4*ttm) - normcdf(-1*d1)*spot;
+    return P;
+}
 ///////////////////////////////////////////////
 //
 //   TESTS

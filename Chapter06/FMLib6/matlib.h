@@ -15,7 +15,9 @@ double normcdf( double x );
  *  Computes the inverse of normcdf
  */
 double norminv( double x ); 
- 
+
+double blackScholesCallPut(double strike, double ttm, double spot, double vol, double r);
+
 /**
  *  Test function
  */
