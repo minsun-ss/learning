@@ -1,7 +1,9 @@
 #include "testing.h"
- 
+#include "stdafx.h"
+using namespace std;
+
 /*  Whether debug messages are enabled */
-static bool debugEnabled = false;
+static bool debugEnabled = true;
  
 bool isDebugEnabled() {
     return debugEnabled;

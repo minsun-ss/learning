@@ -133,6 +133,8 @@ static void testNormInv() {
 }
  
 void testMatlib() {
+    setDebugEnabled(true);
     TEST( testNormInv );
+    setDebugEnabled(false);
     TEST( testNormCdf );
 }

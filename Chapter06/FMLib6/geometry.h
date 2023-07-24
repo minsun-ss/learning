@@ -5,6 +5,4 @@
 double area(double);
 double circumference(double);
 
-void testArea();
-void testCircumference();
-void testBoth();
+void testGeometryLib();
