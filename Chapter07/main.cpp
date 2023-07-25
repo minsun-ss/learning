@@ -1,7 +1,8 @@
 #include "stdafx.h"
+#include "chap7.h"
 using namespace std;
 
 int main() {
-    cout << "whoa" << endl;
+    TEST(testQuadratic);
     return 0;
 }
