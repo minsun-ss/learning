@@ -31,6 +31,20 @@ double mean(vector<double>& nums) {
     return sum / c;
 }
 
+double standardDeviation(vector<double>& nums, bool is_sample) {
+    int population = nums.size();
+    if (is_sample) {
+        population -= 1;
+    }
+    
+    double avg = mean(nums);
+    double stddev = 0.0;
+    for (int i=0; i < nums.size(); i++) {
+        stddev += pow(nums[i] - avg, 2);
+    }
+    return pow(stddev/population, 0.5);
+}
+
 /**
  * TEST TEST TEST
  */
@@ -63,4 +77,15 @@ void testMean() {
     nums.push_back(3.0);
     double avg = mean(nums);
     ASSERT_APPROX_EQUAL(avg, 2.0, 0.001);
+}
+
+void testStandardDeviation() {
+    vector<double> nums;
+    nums.push_back(1.0);
+    nums.push_back(2.0);
+    nums.push_back(3.0);
+    double stddev_population = standardDeviation(nums, false);
+    double stddev_sample = standardDeviation(nums, true);
+    ASSERT_APPROX_EQUAL(stddev_population, 0.81649658092773, 0.001);
+    ASSERT_APPROX_EQUAL(stddev_sample, 1.0, 0.001);
 }

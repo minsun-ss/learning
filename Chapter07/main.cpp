@@ -6,5 +6,6 @@ int main() {
     TEST(testQuadratic);
     TEST(testAltQuadratic);
     TEST(testMean);
+    TEST(testStandardDeviation);
     return 0;
 }
