@@ -17,6 +17,25 @@ vector<double> altSolveQuadratic(double a, double b, double c) {
     return roots;
 }
 
+double mean(vector<double>& nums) {
+    /**
+     * Lesson to be learned here: fucking initialize to 
+     * an actual number lest you get hosed on stupid things
+     */
+    double sum;
+    int c = 0;
+    for (int i = 0; i < nums.size(); i++) {
+        sum += nums[i];
+        c += 1;
+    }
+    return sum / c;
+}
+
+/**
+ * TEST TEST TEST
+ */
+
+
 void testQuadratic() {
     double a = 1.0;
     double b = 5.0;
@@ -35,4 +54,13 @@ void testAltQuadratic() {
     vector<double> qsolution = altSolveQuadratic(a, b, c);
     ASSERT_APPROX_EQUAL(qsolution[0], -2, 0.001);
     ASSERT_APPROX_EQUAL(qsolution[1], -3, 0.001);
+}
+
+void testMean() {
+    vector<double> nums;
+    nums.push_back(1.0);
+    nums.push_back(2.0);
+    nums.push_back(3.0);
+    double avg = mean(nums);
+    ASSERT_APPROX_EQUAL(avg, 2.0, 0.001);
 }
