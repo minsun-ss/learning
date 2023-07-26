@@ -4,5 +4,6 @@ using namespace std;
 
 int main() {
     TEST(testQuadratic);
+    TEST(testAltQuadratic);
     return 0;
 }
