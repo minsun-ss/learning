@@ -7,5 +7,7 @@ int main() {
     TEST(testAltQuadratic);
     TEST(testMean);
     TEST(testStandardDeviation);
+    TEST(testMin);
+    TEST(testMax);
     return 0;
 }

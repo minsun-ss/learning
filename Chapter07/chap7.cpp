@@ -45,6 +45,28 @@ double standardDeviation(vector<double>& nums, bool is_sample) {
     return pow(stddev/population, 0.5);
 }
 
+double min(vector<double>& nums) {
+    double minnum = nums[0];
+    for (int i=1; i < nums.size(); i++) {
+        if (nums[i] < minnum) {
+            minnum = nums[i];
+        }
+    }
+    return minnum;
+}
+
+double max(vector<double>&nums) {
+    double maxnum = nums[0];
+    for (int i=1; i < nums.size(); i++) {
+        if (nums[i] > maxnum) {
+            maxnum = nums[i];
+            }
+    }
+    return maxnum;
+}
+
+
+
 /**
  * TEST TEST TEST
  */
@@ -70,22 +92,36 @@ void testAltQuadratic() {
     ASSERT_APPROX_EQUAL(qsolution[1], -3, 0.001);
 }
 
-void testMean() {
+static vector<double> testVector() {
     vector<double> nums;
     nums.push_back(1.0);
     nums.push_back(2.0);
     nums.push_back(3.0);
+    return nums;
+}
+
+void testMean() {
+    vector<double> nums = testVector();
     double avg = mean(nums);
     ASSERT_APPROX_EQUAL(avg, 2.0, 0.001);
 }
 
 void testStandardDeviation() {
-    vector<double> nums;
-    nums.push_back(1.0);
-    nums.push_back(2.0);
-    nums.push_back(3.0);
+    vector<double> nums = testVector();
     double stddev_population = standardDeviation(nums, false);
     double stddev_sample = standardDeviation(nums, true);
     ASSERT_APPROX_EQUAL(stddev_population, 0.81649658092773, 0.001);
     ASSERT_APPROX_EQUAL(stddev_sample, 1.0, 0.001);
+}
+
+void testMin() {
+    vector<double> nums = testVector();
+    double minnum = min(nums);
+    ASSERT_APPROX_EQUAL(minnum, 1.0, 0.001);
+}
+
+void testMax() {
+    vector<double> nums = testVector();
+    double maxnum = max(nums);
+    ASSERT_APPROX_EQUAL(maxnum, 3.0, 0.001);
 }
