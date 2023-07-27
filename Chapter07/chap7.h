@@ -9,6 +9,7 @@ double mean(vector<double>&);
 double standardDeviation(vector<double>&, bool = true);
 double min(vector<double>&);
 double max(vector<double>&);
+vector<double> randUniform(int);
 
 void testQuadratic();
 void testAltQuadratic();
@@ -16,3 +17,4 @@ void testMean();
 void testStandardDeviation();
 void testMin();
 void testMax();
+void testRanduniform();

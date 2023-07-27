@@ -1,6 +1,9 @@
 #include "chap7.h"
 using namespace std;
 
+/**
+ * Ex. 7.7.1
+ */
 void solveQuadratic(double a, double b, double c, double& root0, double& root1) {
     double r = pow(b * b - 4 * a * c, .5);
     root0 = (-1*b+r) / (2*a);
@@ -17,6 +20,9 @@ vector<double> altSolveQuadratic(double a, double b, double c) {
     return roots;
 }
 
+/**
+ * Ex. 7.7.2
+ */
 double mean(vector<double>& nums) {
     /**
      * Lesson to be learned here: fucking initialize to 
@@ -31,6 +37,9 @@ double mean(vector<double>& nums) {
     return sum / c;
 }
 
+/**
+ * Ex. 7.7.3
+ */
 double standardDeviation(vector<double>& nums, bool is_sample) {
     int population = nums.size();
     if (is_sample) {
@@ -45,6 +54,9 @@ double standardDeviation(vector<double>& nums, bool is_sample) {
     return pow(stddev/population, 0.5);
 }
 
+/**
+ * Ex. 7.7.4
+ */
 double min(vector<double>& nums) {
     double minnum = nums[0];
     for (int i=1; i < nums.size(); i++) {
@@ -65,7 +77,17 @@ double max(vector<double>&nums) {
     return maxnum;
 }
 
-
+/**
+ * Ex. 7.7.5
+ */
+vector<double> randuniform(int n) {
+    vector<double> nums(n, 0.0);
+    for (int i=0; i < n; i++) {
+        int randnum = rand();
+        nums[i] = (randnum+.5)/(RAND_MAX+1.0);
+   }
+    return nums;
+}
 
 /**
  * TEST TEST TEST
@@ -124,4 +146,12 @@ void testMax() {
     vector<double> nums = testVector();
     double maxnum = max(nums);
     ASSERT_APPROX_EQUAL(maxnum, 3.0, 0.001);
+}
+
+void testRanduniform() {
+    vector<double> randnum = randuniform(5);
+    for (int i=0; i < randnum.size(); i++) {        
+        cout << randnum[i] << endl;
+    }
+
 }

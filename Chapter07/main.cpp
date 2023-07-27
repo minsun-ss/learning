@@ -9,5 +9,6 @@ int main() {
     TEST(testStandardDeviation);
     TEST(testMin);
     TEST(testMax);
+    TEST(testRanduniform);
     return 0;
 }
