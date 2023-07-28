@@ -10,5 +10,7 @@ int main() {
     TEST(testMin);
     TEST(testMax);
     TEST(testRanduniform);
+    TEST(testNormal);
+    TEST(testBoxMuller);
     return 0;
 }

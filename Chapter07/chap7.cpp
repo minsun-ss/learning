@@ -84,8 +84,44 @@ vector<double> randuniform(int n) {
     vector<double> nums(n, 0.0);
     for (int i=0; i < n; i++) {
         int randnum = rand();
-        nums[i] = (randnum+.5)/(RAND_MAX+1.0);
+        nums[i] = ((double) randnum)/((double) RAND_MAX);
    }
+    return nums;
+}
+
+/**
+ * Ex. 7.7.6
+ */
+vector<double> randint(int n) {
+    vector<double> nums = randuniform(n);
+    for (int i=0; i<n; i++) {
+        double val = nums[i];
+        nums[i] = norminv(val);
+    }
+    
+    return nums;
+}
+
+/**
+ * Ex. 7.7.7
+ */
+
+vector<double> randBoxMuller(int n) {
+    vector<double> nums = randint(n);
+    for (int i=0; i < n; i+=2) {
+        vector<double> two = randint(2);
+        cout << two[0] << " " << two[1] << endl;
+        if (two[0] < 0) {
+            two[0] *= -1;
+           }
+        if (two[1] < 0) {
+            two[1] *= -1;
+        }
+        double n = cos(two[0]*2*PI) * pow(log(two[1])*-2, 0.5);
+        double n2 = cos(two[1]*2*PI) * pow(log(two[0])*-2, 0.5);
+        nums[i] = n;
+        nums[i+1] = n2;
+    }
     return nums;
 }
 
@@ -150,8 +186,20 @@ void testMax() {
 
 void testRanduniform() {
     vector<double> randnum = randuniform(5);
-    for (int i=0; i < randnum.size(); i++) {        
-        cout << randnum[i] << endl;
-    }
+}
 
+void testNormal() {
+    vector<double> nums = randint(10000);
+    double m = mean(nums);
+    double s = standardDeviation(nums);
+    ASSERT_APPROX_EQUAL(m, 0.0, 0.1);
+    ASSERT_APPROX_EQUAL(s, 1.0, 0.1);
+    // cout << mean(nums) << " " << standardDeviation(nums) << endl;
+}
+
+void testBoxMuller() {
+    vector<double> nums = randBoxMuller(10);
+    for (int i=0; i < nums.size(); i++) {
+        cout << nums[i] << endl;
+    }
 }

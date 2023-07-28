@@ -10,6 +10,8 @@ double standardDeviation(vector<double>&, bool = true);
 double min(vector<double>&);
 double max(vector<double>&);
 vector<double> randUniform(int);
+vector<double> randint(int);
+vector<double> randBoxMuller(int);
 
 void testQuadratic();
 void testAltQuadratic();
@@ -18,3 +20,5 @@ void testStandardDeviation();
 void testMin();
 void testMax();
 void testRanduniform();
+void testNormal();
+void testBoxMuller();
