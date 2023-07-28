@@ -84,7 +84,7 @@ vector<double> randuniform(int n) {
     vector<double> nums(n, 0.0);
     for (int i=0; i < n; i++) {
         int randnum = rand();
-        nums[i] = ((double) randnum)/((double) RAND_MAX);
+        nums[i] = ((double) randnum+.5)/((double) RAND_MAX+1.0);
    }
     return nums;
 }
@@ -106,23 +106,15 @@ vector<double> randint(int n) {
  * Ex. 7.7.7
  */
 
-vector<double> randBoxMuller(int n) {
-    vector<double> nums = randint(n);
-    for (int i=0; i < n; i+=2) {
-        vector<double> two = randint(2);
+void randBoxMuller(int n, vector<double>& n1, vector<double>& n2) {
+    for (int i=0; i < n; i++) {
+        vector<double> two = randuniform(2);
         cout << two[0] << " " << two[1] << endl;
-        if (two[0] < 0) {
-            two[0] *= -1;
-           }
-        if (two[1] < 0) {
-            two[1] *= -1;
-        }
-        double n = cos(two[0]*2*PI) * pow(log(two[1])*-2, 0.5);
-        double n2 = cos(two[1]*2*PI) * pow(log(two[0])*-2, 0.5);
-        nums[i] = n;
-        nums[i+1] = n2;
+        double a1 = cos(two[0]*2*PI) * pow(log(two[1])*-2, 0.5);
+        double a2 = cos(two[1]*2*PI) * pow(log(two[0])*-2, 0.5);
+        n1[i] = a1;
+        n2[i] = a2;
     }
-    return nums;
 }
 
 /**
@@ -185,7 +177,11 @@ void testMax() {
 }
 
 void testRanduniform() {
-    vector<double> randnum = randuniform(5);
+    vector<double> randnum = randuniform(100);
+    for (int i=0; i<randnum.size(); i++) {
+        ASSERT(randnum[i]<=1);
+        ASSERT(randnum[i]>=0);
+    }
 }
 
 void testNormal() {
@@ -198,8 +194,7 @@ void testNormal() {
 }
 
 void testBoxMuller() {
-    vector<double> nums = randBoxMuller(10);
-    for (int i=0; i < nums.size(); i++) {
-        cout << nums[i] << endl;
-    }
+    vector<double> n1(10, 0.0);
+    vector<double> n2(10, 0.0);
+    randBoxMuller(10, n1, n2);
 }

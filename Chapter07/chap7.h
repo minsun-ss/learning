@@ -11,7 +11,7 @@ double min(vector<double>&);
 double max(vector<double>&);
 vector<double> randUniform(int);
 vector<double> randint(int);
-vector<double> randBoxMuller(int);
+void randBoxMuller(int, vector<double>&, vector<double>&);
 
 void testQuadratic();
 void testAltQuadratic();
