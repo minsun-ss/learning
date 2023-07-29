@@ -109,7 +109,6 @@ vector<double> randint(int n) {
 void randBoxMuller(int n, vector<double>& n1, vector<double>& n2) {
     for (int i=0; i < n; i++) {
         vector<double> two = randuniform(2);
-        cout << two[0] << " " << two[1] << endl;
         double a1 = cos(two[0]*2*PI) * pow(log(two[1])*-2, 0.5);
         double a2 = cos(two[1]*2*PI) * pow(log(two[0])*-2, 0.5);
         n1[i] = a1;
