@@ -40,12 +40,22 @@ void dataChart(ostream& out, const vector<double>& x, const vector<double>& y) {
     }
 }
 
+/**
+ * Ex. 7.7.8
+ */
 void plot(string name, const vector<double>& x, const vector<double>& y) {
     ofstream out;
     out.open("test778.html");
     writetopChartHtml(out);
     dataChart(out, x, y);
     writebottomChartHtml(out, name);
+}
+
+/**
+ * Ex. 7.7.10
+ * n = buckets
+ */
+void hist(vector<double> vals, int n) {
 }
 
 /**
