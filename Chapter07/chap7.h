@@ -12,6 +12,7 @@ double max(vector<double>&);
 vector<double> randUniform(int);
 vector<double> randint(int);
 void randBoxMuller(int, vector<double>&, vector<double>&);
+double prctile(const vector<double>&, double);
 
 void testQuadratic();
 void testAltQuadratic();
@@ -22,3 +23,4 @@ void testMax();
 void testRanduniform();
 void testNormal();
 void testBoxMuller();
+void testPrctile();

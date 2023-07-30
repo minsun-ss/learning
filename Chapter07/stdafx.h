@@ -9,3 +9,4 @@
 #include "testing.h"
 #include <random>
 #include "matlib.h"
+#include <algorithm>

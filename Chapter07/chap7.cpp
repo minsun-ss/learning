@@ -117,6 +117,33 @@ void randBoxMuller(int n, vector<double>& n1, vector<double>& n2) {
 }
 
 /**
+ * Ex. 7.7.9
+ */
+double prctile(const vector<double>& v, double percentile) {
+   vector<double> cp = v;
+   sort(cp.begin(), cp.end());
+
+   double bottompct = 0.0;
+   double bottomval = cp[0];
+   for (int i=1; i<=cp.size(); i++) {
+       double toppct = ((double) i*2.0-1.0)/(cp.size()*2);
+       bool BETWEEN_PER = (percentile > bottompct) & (percentile <= toppct);
+       bool BEFORE_TOP = (i==cp.size()) & (percentile >= toppct);
+       if (BETWEEN_PER) {
+            double diff = percentile - bottompct;
+            double perpercent = (cp[i-1] - bottomval)/(toppct-bottompct);
+            double result = (diff*perpercent)+(double)bottomval;
+            return result;
+       } else if (BEFORE_TOP) {
+           return cp[cp.size()-1];
+       }
+       bottompct = toppct;
+       bottomval = v[i];
+   }
+   return 1.0;
+}
+
+/**
  * TEST TEST TEST
  */
 
@@ -196,4 +223,18 @@ void testBoxMuller() {
     vector<double> n1(10, 0.0);
     vector<double> n2(10, 0.0);
     randBoxMuller(10, n1, n2);
+}
+
+void testPrctile() {
+    vector<double> n1;
+    n1.push_back(1);
+    n1.push_back(7);
+    n1.push_back(3);
+    n1.push_back(4);
+    double result = prctile(n1, 0.375);
+    ASSERT_APPROX_EQUAL(result, 3, .001);
+    result = prctile(n1, 0.90);
+    ASSERT_APPROX_EQUAL(result, 7, .001);
+    result = prctile(n1, 0.125);
+    ASSERT_APPROX_EQUAL(result, 1, .001);
 }
