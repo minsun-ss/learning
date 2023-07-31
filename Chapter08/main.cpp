@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    TEST(testPutOptionPrice);
-    cout << "Yup" << endl;
+    // TEST(testPutOptionPrice);
+    testLineChart();
     return 0;
 }

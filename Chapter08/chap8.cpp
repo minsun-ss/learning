@@ -1,4 +1,4 @@
-#include "chap8.h"
+
 #include "matlib.h"
 using namespace std;
 
@@ -22,8 +22,8 @@ public:
 };
 
 double PutOption::payoff(double stockAtMaturity) const {
-    if (stockAtMaturity>strike) {
-        return stockAtMaturity-strike;
+    if (stockAtMaturity<strike) {
+        return strike-stockAtMaturity;
     } else {
         return 0.0;
     }
@@ -40,16 +40,12 @@ double PutOption::price(const BlackScholesModel& bsm) const {
     double denominator = sigma * sqrt(T);
     double d1 = numerator/denominator;
     double d2 = d1 - denominator;
-    return S*normcdf(d1) - exp(-r*T)*K*normcdf(d2);
+    return K*normcdf(-d2)*exp(-r*T) - normcdf(-d1)*S;
 }
 
 /** 
  * Test functions
  */
-
-void testTest() {
-    cout << "Yeah" << endl;
-}
 
 void testPutOptionPrice() {
     PutOption putOption;
@@ -63,5 +59,5 @@ void testPutOptionPrice() {
     bsm.stockPrice = 100.0;
 
     double price = putOption.price(bsm);
-    ASSERT_APPROX_EQUAL(price, 4.046, 0.01);
+    ASSERT_APPROX_EQUAL(price, 3.92252, 0.01);
 }

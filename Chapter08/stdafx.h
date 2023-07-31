@@ -7,4 +7,4 @@
 #include <fstream>
 #include <sstream>
 #include "testing.h"
-
+#include "plot.h"
