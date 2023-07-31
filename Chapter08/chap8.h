@@ -6,4 +6,5 @@
 void testPutOptionPrice();
 double testDistanceTo();
 double testPerimeter();
+double testPolynomial();
 

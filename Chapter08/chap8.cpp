@@ -84,6 +84,53 @@ double PutOption::price(const BlackScholesModel& bsm) const {
     return K*normcdf(-d2)*exp(-r*T) - normcdf(-d1)*S;
 }
 
+/**
+ * Ex. 8.8.2
+ */
+class Polynomial {
+public:
+    vector<double> coef;
+    Polynomial();
+    Polynomial(double c);
+    Polynomial(vector<double> coef);
+
+    double evaluate(double x);
+    Polynomial add(const Polynomial& p1, const Polynomial& p2) const;
+};
+
+Polynomial::Polynomial(vector<double> c): coef(c) {}
+Polynomial::Polynomial(double c) {
+    vector<double> _c(1, c);
+    coef = _c;
+}
+Polynomial::Polynomial(): Polynomial(0) {}
+
+double Polynomial::evaluate(double x) {
+    double finalResult = 0.0;
+    for (int i = 0; i < coef.size(); i++) {
+        finalResult += pow(x, i)*coef[i];
+    }
+    return finalResult;
+}
+
+Polynomial Polynomial::add(const Polynomial& p1, const Polynomial& p2) const {
+    vector<double> newPoly;
+    if (p1.coef.size() >= p2.coef.size()) {
+        newPoly = p1.coef;
+        cout << newPoly.size();
+        for (int i = 0; i < p2.coef.size(); i++) {
+            newPoly[i] += p2.coef[i];
+        }
+     } else {
+         newPoly = p2.coef;
+         for (int i = 0; i < p1.coef.size(); i++) {
+             newPoly[i] += p1.coef[i];
+         }
+     }
+
+    return Polynomial(newPoly);
+}
+
 /** 
  * Test functions
  */
@@ -117,4 +164,37 @@ void testPutOptionPrice() {
 
     double price = putOption.price(bsm);
     ASSERT_APPROX_EQUAL(price, 3.92252, 0.01);
+}
+
+void testPolynomial() {
+    Polynomial p1 = Polynomial(1);
+    ASSERT(p1.coef.size() == 1);
+    ASSERT_APPROX_EQUAL(p1.coef[0], 1, 0.001);
+
+    p1 = Polynomial();
+    ASSERT(p1.coef.size() == 1);
+    ASSERT_APPROX_EQUAL(p1.coef[0], 0, 0.001);
+
+    vector<double> coefs;
+    coefs.push_back(1.0);
+    coefs.push_back(2.0);
+
+    vector<double> coefs2;
+    coefs2.push_back(2.0);
+    coefs2.push_back(3.0);
+    coefs2.push_back(4.0);
+
+    p1 = Polynomial(coefs);
+    Polynomial p2 = Polynomial(coefs2);
+    ASSERT(p1.coef.size() == 2);
+    ASSERT_APPROX_EQUAL(p1.coef[1], 2.0, 0.001);
+
+    double evaluation = p1.evaluate(1.0);
+    ASSERT_APPROX_EQUAL(evaluation, 3.0, 0.001);
+
+    Polynomial p3 = p1.add(p1, p2);
+    ASSERT(p3.coef.size() == 3);
+    ASSERT_APPROX_EQUAL(p3.coef[0], 3.0, 0.001);
+    ASSERT_APPROX_EQUAL(p3.coef[1], 5.0, 0.001);
+    ASSERT_APPROX_EQUAL(p3.coef[2], 4.0, 0.001);
 }

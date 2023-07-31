@@ -6,6 +6,7 @@ int main() {
     TEST(testPutOptionPrice);
     TEST(testDistanceTo);
     TEST(testPerimeter);
+    TEST(testPolynomial);
     //testLineChart();
     return 0;
 }
