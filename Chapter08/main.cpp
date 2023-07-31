@@ -3,7 +3,8 @@
 using namespace std;
 
 int main() {
-    // TEST(testPutOptionPrice);
-    testLineChart();
+    TEST(testPutOptionPrice);
+    TEST(testDistanceTo);
+    //testLineChart();
     return 0;
 }

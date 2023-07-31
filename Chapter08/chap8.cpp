@@ -2,6 +2,22 @@
 #include "matlib.h"
 using namespace std;
 
+/*
+ * Ex. 8.6.3
+ */
+class CartesianPoint {
+public:
+    double x;
+    double y;
+    double distanceTo(CartesianPoint& p);
+};
+
+double CartesianPoint::distanceTo(CartesianPoint& p) {
+    double x_dist = p.x - x;
+    double y_dist = p.y - y;
+    return sqrt((x_dist * x_dist) + (y_dist * y_dist));
+}
+
 /* 
  * Ex. 8.6.1
  */
@@ -46,6 +62,17 @@ double PutOption::price(const BlackScholesModel& bsm) const {
 /** 
  * Test functions
  */
+
+void testDistanceTo() {
+    CartesianPoint p1;
+    p1.x = 1;
+    p1.y = 1;
+    CartesianPoint p2;
+    p2.x = 4;
+    p2.y = 5;
+    double d= p1.distanceTo(p2);
+    ASSERT_APPROX_EQUAL(d, 5.0, 0.0001);
+}
 
 void testPutOptionPrice() {
     PutOption putOption;

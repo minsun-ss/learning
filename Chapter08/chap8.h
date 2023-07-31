@@ -2,6 +2,6 @@
 
 #include "stdafx.h"
 
-void testTest();
 
 void testPutOptionPrice();
+double testDistanceTo();
