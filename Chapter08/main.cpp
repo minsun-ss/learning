@@ -5,6 +5,7 @@ using namespace std;
 int main() {
     TEST(testPutOptionPrice);
     TEST(testDistanceTo);
+    TEST(testPerimeter);
     //testLineChart();
     return 0;
 }

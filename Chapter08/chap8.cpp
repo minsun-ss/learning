@@ -9,13 +9,23 @@ class CartesianPoint {
 public:
     double x;
     double y;
-    double distanceTo(CartesianPoint& p);
+    double distanceTo(const CartesianPoint& p) const;
 };
 
-double CartesianPoint::distanceTo(CartesianPoint& p) {
+double CartesianPoint::distanceTo(const CartesianPoint& p) const {
     double x_dist = p.x - x;
     double y_dist = p.y - y;
     return sqrt((x_dist * x_dist) + (y_dist * y_dist));
+}
+
+/**
+ * Ex. 8.6.4
+ */
+double perimeter(const CartesianPoint& p1, const CartesianPoint& p2, const CartesianPoint& p3) {
+    double dist1 = p1.distanceTo(p2);
+    double dist2 = p1.distanceTo(p3);
+    double dist3 = p2.distanceTo(p3);
+    return dist1 + dist2 + dist3;
 }
 
 /* 
@@ -72,6 +82,21 @@ void testDistanceTo() {
     p2.y = 5;
     double d= p1.distanceTo(p2);
     ASSERT_APPROX_EQUAL(d, 5.0, 0.0001);
+}
+
+void testPerimeter() {
+    CartesianPoint p1;
+    p1.x = 0;
+    p1.y = 0;
+    CartesianPoint p2;
+    p2.x = 3.0;
+    p2.y = 0.0;
+    CartesianPoint p3;
+    p3.x = 3.0;
+    p3.y = 4.0;
+    
+    double trianglePerimeter = perimeter(p1, p2, p3);
+    ASSERT_APPROX_EQUAL(trianglePerimeter, 12.0, 0.001);
 }
 
 void testPutOptionPrice() {

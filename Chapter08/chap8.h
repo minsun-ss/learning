@@ -5,3 +5,5 @@
 
 void testPutOptionPrice();
 double testDistanceTo();
+double testPerimeter();
+
