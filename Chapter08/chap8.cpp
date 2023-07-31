@@ -9,8 +9,17 @@ class CartesianPoint {
 public:
     double x;
     double y;
+    CartesianPoint();
+    CartesianPoint(double x, double y);
     double distanceTo(const CartesianPoint& p) const;
 };
+
+
+CartesianPoint::CartesianPoint(): x(0.0), y(0.0) {
+}
+
+CartesianPoint::CartesianPoint(double _x, double _y): x(_x), y(_y) {
+}
 
 double CartesianPoint::distanceTo(const CartesianPoint& p) const {
     double x_dist = p.x - x;
@@ -43,9 +52,15 @@ class PutOption {
 public:
     double strike;
     double maturity;
+    PutOption();
+    PutOption(double strike, double maturity);
     double payoff(double stockAtMaturity) const;
     double price (const BlackScholesModel& bsm) const;
 };
+
+PutOption::PutOption(): strike(0.0), maturity(0.0) {}
+PutOption::PutOption(double s, double m): strike(s), maturity(m) {
+}
 
 double PutOption::payoff(double stockAtMaturity) const {
     if (stockAtMaturity<strike) {
@@ -74,26 +89,16 @@ double PutOption::price(const BlackScholesModel& bsm) const {
  */
 
 void testDistanceTo() {
-    CartesianPoint p1;
-    p1.x = 1;
-    p1.y = 1;
-    CartesianPoint p2;
-    p2.x = 4;
-    p2.y = 5;
+    CartesianPoint p1(1,1);
+    CartesianPoint p2(4,5);
     double d= p1.distanceTo(p2);
     ASSERT_APPROX_EQUAL(d, 5.0, 0.0001);
 }
 
 void testPerimeter() {
-    CartesianPoint p1;
-    p1.x = 0;
-    p1.y = 0;
-    CartesianPoint p2;
-    p2.x = 3.0;
-    p2.y = 0.0;
-    CartesianPoint p3;
-    p3.x = 3.0;
-    p3.y = 4.0;
+    CartesianPoint p1(0, 0);
+    CartesianPoint p2(3.0, 0);
+    CartesianPoint p3(3.0, 4.0);
     
     double trianglePerimeter = perimeter(p1, p2, p3);
     ASSERT_APPROX_EQUAL(trianglePerimeter, 12.0, 0.001);
