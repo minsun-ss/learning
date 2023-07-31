@@ -11,13 +11,13 @@
 using namespace std;
  
 int main() {
-    testMatlib();
-    testGeometry();
-    testCallOption();
-    testPutOption();
-    testBlackScholesModel();
-    testLineChart();
-    testTextFunctions();
-    testHistogram();
-    testMonteCarloPricer();
+    // testMatlib();
+    // testGeometry();
+    // testCallOption();
+    // testPutOption();
+    // testBlackScholesModel();
+    // testLineChart();
+    // testTextFunctions();
+    // testHistogram();
+    TEST(testMonteCarloPricer);
 }
