@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "CallOption.h"
 #include "PutOption.h"
+#include "UpAndOutOption.h"
 #include "BlackScholesModel.h"
  
 class MonteCarloPricer {
@@ -16,6 +17,9 @@ public:
                   const BlackScholesModel& model );
     double price(const PutOption& option, 
             const BlackScholesModel& model);
+    double price(const UpAndOutOption& option, 
+            const BlackScholesModel& model, int nSteps);
 };
- 
+
+void testUpAndOutOption();
 void testMonteCarloPricer();

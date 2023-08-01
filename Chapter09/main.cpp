@@ -7,17 +7,14 @@
 #include "BlackScholesModel.h"
 #include "Histogram.h"
 #include "MonteCarloPricer.h"
- 
+#include "chap9.h"
+#include "UpAndOutOption.h"
+
 using namespace std;
  
 int main() {
-    // testMatlib();
-    // testGeometry();
-    // testCallOption();
-    // testPutOption();
-    // testBlackScholesModel();
-    // testLineChart();
-    // testTextFunctions();
-    // testHistogram();
-    TEST(testMonteCarloPricer);
+    // TEST(testMonteCarloPricer);
+    // pathDistributionChart();
+    // TEST(testBarrier);
+    TEST(testUpAndOutOption);
 }
