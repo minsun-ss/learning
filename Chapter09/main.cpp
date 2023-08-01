@@ -16,5 +16,6 @@ int main() {
     // TEST(testMonteCarloPricer);
     // pathDistributionChart();
     // TEST(testBarrier);
-    TEST(testUpAndOutOption);
+    // TEST(testUpAndOutOption);
+    testPricePaths();
 }

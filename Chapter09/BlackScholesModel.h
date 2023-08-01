@@ -18,6 +18,9 @@ public:
     std::vector<double> generateRiskNeutralPricePath(
                             double toDate,
                             int nSteps) const;
+
+    std::vector<std::vector<double>> generateRiskNeutralPricePaths(int nPaths, double toDate, int nSteps);
+
 private:
     std::vector<double> generatePricePath(
                             double toDate,
@@ -28,3 +31,4 @@ private:
  
  
 void testBlackScholesModel();
+void testPricePaths();

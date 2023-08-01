@@ -22,6 +22,17 @@ vector<double> BlackScholesModel::
     return generatePricePath(
         toDate, nSteps, riskFreeRate );
 }
+
+vector<vector<double>> BlackScholesModel::generateRiskNeutralPricePaths(int nPaths, double toDate, 
+        int nSteps) {
+    vector<vector<double>> pricePaths;
+    for (int i=0; i < nPaths; i++) {
+        vector<double> v = generateRiskNeutralPricePath(toDate, nSteps);
+        pricePaths.push_back(v);
+    }
+    return pricePaths;
+}
+
 /**
  *  Creates a price path according to the model parameters
  */
@@ -30,7 +41,8 @@ vector<double> BlackScholesModel::generatePricePath(
         int nSteps ) const {
     return generatePricePath(toDate, nSteps, drift );
 }
- 
+
+
  
 /**
  *  Creates a price path according to the model parameters
@@ -107,4 +119,25 @@ void testVisually() {
 void testBlackScholesModel() {
     TEST( testRiskNeutralPricePath );
     TEST( testVisually );
+}
+
+void testPricePaths() {
+    cout << "testing pricepaths" << endl;
+    BlackScholesModel bsm;
+    bsm.riskFreeRate = 0.05;
+    bsm.volatility = 0.1;
+    bsm.stockPrice = 100.0;
+    bsm.date = 2.0;
+    int nSteps = 2;
+    double maturity = 4.0;
+
+    vector<vector<double>> pp = bsm.generateRiskNeutralPricePaths(10, maturity, nSteps);
+
+    for (int i=0; i < pp.size(); i++) {
+        cout << i << endl;
+        vector<double> v = pp[i];
+        for (int j=0; j < v.size(); j++) {
+            cout << v[j] << endl;
+        }
+    }
 }
