@@ -6,6 +6,10 @@ using namespace std;
 
 /**
  * Ex. 9.3.2
+ *
+ * I fully expect this thing to be normally distributed at around just above 100
+ * given that the risk free rate is 0.05 and the px started at 100 and the step
+ * above is just a single year.
  */
 void pathDistributionChart() {
     rng("default");
