@@ -10,9 +10,8 @@ public:
     double maturity;
  
     double payoff( double stockAtMaturity ) const;
- 
-    double price( const BlackScholesModel& bsm )
-        const;
+
+    double price (const BlackScholesModel& bsm) const;
 };
  
 void testCallOption();

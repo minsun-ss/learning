@@ -19,6 +19,7 @@ public:
             const BlackScholesModel& model);
     double price(const UpAndOutOption& option, 
             const BlackScholesModel& model, int nSteps);
+    double std95(const CallOption& option, BlackScholesModel& model);
 };
 
 void testUpAndOutOption();

@@ -13,9 +13,9 @@
 using namespace std;
  
 int main() {
-    // TEST(testMonteCarloPricer);
+    TEST(testMonteCarloPricer);
     // pathDistributionChart();
     // TEST(testBarrier);
     // TEST(testUpAndOutOption);
-    testPricePaths();
+    // delta();
 }

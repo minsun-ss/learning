@@ -6,24 +6,44 @@ using namespace std;
 MonteCarloPricer::MonteCarloPricer() :
     nScenarios(10000) {
 }
- 
+
 double MonteCarloPricer::price(
         const CallOption& callOption,
         const BlackScholesModel& model ) {
     double total = 0.0;
+    vector<double> payoffs;
     for (int i=0; i<nScenarios; i++) {
-        vector<double> path= model.
-                generateRiskNeutralPricePath(
-                    callOption.maturity,
-                    1 );
+        vector<double> path= model.generateRiskNeutralPricePath(callOption.maturity,1);
         double stockPrice = path.back();
         double payoff=callOption.payoff(stockPrice);
+        payoffs.push_back(payoff);
         total+= (double) payoff;
     }
     double mean = total/nScenarios;
+    // calculate the standard dev 
+    double s = standardDeviation(payoffs, true);
+    cout << s << endl;
+    double optionstd = s * pow(nScenarios, -1.2);
+    cout << optionstd << endl;
     double r = model.riskFreeRate;
     double T = callOption.maturity - model.date;
     return exp(-r*T)*mean;
+}
+
+/**
+ * Ex. 9.3.6
+ */
+double MonteCarloPricer::std95(const CallOption& callOption, BlackScholesModel& model) {
+    vector<double> payoffs;
+    for (int i = 0; i < nScenarios; i++) {
+        vector<double> path = model.generateRiskNeutralPricePath(callOption.maturity,1);
+        double stockPrice = path.back();
+        double payoff = callOption.payoff(stockPrice);
+        payoffs.push_back(payoff);
+    }
+    double s = standardDeviation(payoffs, true);
+    double optionstd = s * pow(nScenarios, -1.2);
+    return optionstd * 1.96;
 }
 
 /**
@@ -54,12 +74,12 @@ double MonteCarloPricer::price(const UpAndOutOption& upoOption,
         double payoff = upoOption.computePayoff(path);
         total += payoff;
     }
-    cout << total << endl;
     double mean = total/nScenarios;
     double r = model.riskFreeRate;
     double T = upoOption.maturity - model.date;
     return exp(-r*T)*mean;
 }
+
 
 //////////////////////////////////////
 //
@@ -128,7 +148,6 @@ void testUpAndOutOption() {
     // functionally a knock out should have a lower expected value
     // to that of a call option, albeit that approaching that of the 
     // call option value as the barrier becomes more difficult to reach
-
     // expected is priced like a call option; a barrier option
     // should be less than expected however given the knock out
     ASSERT(price < expected);
@@ -142,7 +161,28 @@ void testUpAndOutOption() {
     cout << price << " " << price2 << " " << expected << endl;
 }
 
+void testCLT() {
+    rng("default");
+
+    CallOption c;
+    c.strike = 110;
+    c.maturity = 2;
+ 
+    BlackScholesModel m;
+    m.volatility = 0.1;
+    m.riskFreeRate = 0.05;
+    m.stockPrice = 100.0;
+    m.drift = 0.1;
+    m.date = 1;
+ 
+    MonteCarloPricer pricer;
+    double std95 = pricer.std95( c, m );
+    ASSERT_APPROX_EQUAL(std95, 0.0001, .001);
+}
+
+
 void testMonteCarloPricer() {
-    testPriceCallOption();
-    testPricePutOption();
+    // testPriceCallOption();
+    // testPricePutOption();
+    testCLT();
 }

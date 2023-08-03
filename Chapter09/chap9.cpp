@@ -35,17 +35,3 @@ void pathDistributionChart() {
     hist.writeAsHTML("test932.html");
 }
 
-/**
- * Ex. 9.3.5
- */
-void delta() {
-    BlackScholesModel m;
-    m.volatility = 0.1;
-    m.riskFreeRate = 0.05;
-    m.stockPrice = 100.0;
-    m.drift = 0.1;
-    m.date = 1;
-
-    double h = m.stockPrice*pow(10, -6);
-
-}

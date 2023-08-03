@@ -119,6 +119,7 @@ void testVisually() {
 void testBlackScholesModel() {
     TEST( testRiskNeutralPricePath );
     TEST( testVisually );
+    TEST( testPricePaths );
 }
 
 void testPricePaths() {
@@ -133,11 +134,6 @@ void testPricePaths() {
 
     vector<vector<double>> pp = bsm.generateRiskNeutralPricePaths(10, maturity, nSteps);
 
-    for (int i=0; i < pp.size(); i++) {
-        cout << i << endl;
-        vector<double> v = pp[i];
-        for (int j=0; j < v.size(); j++) {
-            cout << v[j] << endl;
-        }
-    }
+    ASSERT(pp.size() == 10);
+    ASSERT(pp[0].size() == 2);
 }
