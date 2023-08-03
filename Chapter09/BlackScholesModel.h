@@ -22,6 +22,8 @@ public:
     std::vector<std::vector<double>> generateRiskNeutralPricePaths(int nPaths, double toDate, int nSteps);
 
 private:
+    std::vector<double> generatePricePathReducedVariance(double toDate, int nSteps, double drift) const;
+
     std::vector<double> generatePricePath(
                             double toDate,
                             int nSteps,

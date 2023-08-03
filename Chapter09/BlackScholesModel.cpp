@@ -65,7 +65,17 @@ vector<double> BlackScholesModel::generatePricePath(
     }
     return path;
 }
- 
+
+/**
+ * Ex. 9.3.7
+ */
+vector<double> BlackScholesModel::generatePricePathReducedVariance(
+        double toDate, int nSteps, double drift) const {
+    vector<double> path(nSteps,0.0);
+    return path;
+}
+
+
 ////////////////////////////////
 //
 //   TESTS
