@@ -23,6 +23,11 @@ vector<double> BlackScholesModel::
         toDate, nSteps, riskFreeRate );
 }
 
+vector<double> BlackScholesModel::generateRiskNeutralPricePathReducedVariance(double toDate,
+        int nSteps) const {
+    return generatePricePathReducedVariance(toDate, nSteps, riskFreeRate);
+}
+
 vector<vector<double>> BlackScholesModel::generateRiskNeutralPricePaths(int nPaths, double toDate, 
         int nSteps) {
     vector<vector<double>> pricePaths;
@@ -42,15 +47,18 @@ vector<double> BlackScholesModel::generatePricePath(
     return generatePricePath(toDate, nSteps, drift );
 }
 
+vector<double> BlackScholesModel::generatePricePathReducedVariance(double toDate,
+        int nSteps) const {
+    return generatePricePathReducedVariance(toDate, nSteps, drift);
+}
 
- 
 /**
  *  Creates a price path according to the model parameters
  */
 vector<double> BlackScholesModel::generatePricePath(
         double toDate,
         int nSteps,
-        double drift ) const {
+        double drift) const {
     vector<double> path(nSteps,0.0);
     vector<double> epsilon = randn( nSteps );
     double dt = (toDate-date)/nSteps;
@@ -72,6 +80,17 @@ vector<double> BlackScholesModel::generatePricePath(
 vector<double> BlackScholesModel::generatePricePathReducedVariance(
         double toDate, int nSteps, double drift) const {
     vector<double> path(nSteps,0.0);
+    vector<double> epsilon = randn(nSteps);
+    double dt = (toDate-date)/nSteps;
+    double a = (drift-volatility*volatility*0.5)*dt;
+    double b = volatility*sqrt(dt);
+    double currentLogS = log(stockPrice);
+    for (int i=0; i < nSteps; i++) {
+        double dLogS = a + b*epsilon[i];
+        double logS = currentLogS - dLogS;
+        path[i] = exp(logS);
+        currentLogS = logS;
+    }
     return path;
 }
 
