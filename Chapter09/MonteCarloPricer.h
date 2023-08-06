@@ -15,6 +15,7 @@ public:
     /*  Price a call option */
     double price( const CallOption& option,
                   const BlackScholesModel& model );
+    double priceRV(const CallOption& option, const BlackScholesModel& model);
     double price(const PutOption& option, 
             const BlackScholesModel& model);
     double price(const UpAndOutOption& option, 
@@ -24,3 +25,4 @@ public:
 
 void testUpAndOutOption();
 void testMonteCarloPricer();
+void testPriceCallOptionRV();

@@ -13,7 +13,8 @@
 using namespace std;
  
 int main() {
-    TEST(testMonteCarloPricer);
+    testPriceCallOptionRV();
+    // TEST(testMonteCarloPricer);
     // pathDistributionChart();
     // TEST(testBarrier);
     // TEST(testUpAndOutOption);

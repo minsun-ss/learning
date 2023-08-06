@@ -14,10 +14,15 @@ public:
     std::vector<double> generatePricePath(
                             double toDate,
                             int nSteps) const;
- 
+
+    std::vector<double> generatePricePathReducedVariance(double toDate, int nSteps) const;
+
     std::vector<double> generateRiskNeutralPricePath(
                             double toDate,
                             int nSteps) const;
+
+    std::vector<double> generateRiskNeutralPricePathReducedVariance(
+            double toDate, int nSteps) const;
 
     std::vector<std::vector<double>> generateRiskNeutralPricePaths(int nPaths, double toDate, int nSteps);
 
