@@ -1,8 +1,9 @@
 #pragma once
- 
+
 #include "stdafx.h"
- 
- 
+#include "RealFunction.h"
+
+
 /*  Create a linearly spaced vector */
 std::vector<double> linspace( double from, double to, int numPoints );
 /*  Compute the sum of a vector */
@@ -19,37 +20,50 @@ double max( const std::vector<double>& v );
 double prctile( const std::vector<double>& v, double percentage );
 /*  Sort a vector */
 std::vector<double> sort( const std::vector<double>&  v );
- 
+
 /*  Create uniformly distributed random numbers */
 std::vector<double> randuniform( int n );
 /*  Create normally distributed random numbers */
 std::vector<double> randn( int n );
 /*  Seeds the default random number generator */
 void rng( const std::string& setting );
- 
+
 /**
  *  Computes the cumulative
  *  distribution function of the
  *  normal distribution
  */
 double normcdf( double x );
- 
+
 /* Computes the inverse of normcdf */
 double norminv( double x ); 
- 
- 
+
+
 /*  Create a line chart */
 void plot( const std::string& fileName,
            const std::vector<double>& x,
            const std::vector<double>& y);
- 
+
 /*  Plot a histogram */
 void hist( const std::string& fileName,
            const std::vector<double>& values,
            int numBuckets=10);
- 
- 
+
+/*  Integrate using the rectangle rule */
+double integral( RealFunction& f,
+                 double a,
+                 double b,
+                 int nSteps );
+
+
+
+
+
+
+
+
 /**
  *  Test function
  */
 void testMatlib();
+

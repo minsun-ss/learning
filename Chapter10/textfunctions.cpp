@@ -1,7 +1,7 @@
 #include "textfunctions.h"
- 
+
 using namespace std;
- 
+
 /**
  *  Replace all quote characters etc in a
  *  string with the correct escape characters
@@ -34,19 +34,19 @@ std::string escapeJavascriptString( const std::string& in ) {
     }
     return s.str();
 }
- 
- 
+
+
 //
 //   TESTS
 //
- 
- 
+
+
 static void testEscapeJavascriptString() {
     string in = "\"\'\\\r\n\tNot escaped";
     string out = "\\\"\\\'\\\\\\r\\n\\tNot escaped";
     ASSERT( escapeJavascriptString( in )==out );
 }
- 
+
 void testTextFunctions() {
     TEST( testEscapeJavascriptString );
 }

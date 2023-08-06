@@ -1,7 +1,7 @@
 #pragma once
- 
+
 #include "stdafx.h"
- 
+
 class LineChart {
 public:
     LineChart();
@@ -15,6 +15,6 @@ private:
     std::vector<double> x;
     std::vector<double> y;
 };
- 
- 
+
+
 void testLineChart();

@@ -2,19 +2,19 @@
 
 #include "stdafx.h"
 
-class Histogram {
+class PieChart {
 public:
-    Histogram();
-    void setNumBuckets( int n );
+    PieChart();
     void setTitle( const std::string& title );
-    void setData( const std::vector<double>& v );
+    void addEntry( const std::string& label,
+                   double value );
     void writeAsHTML( std::ostream& out ) const;
     void writeAsHTML( const std::string& file ) const;
 private:
-    int numBuckets;
     std::string title;
-    std::vector<double> data;
+    std::vector<std::string> labels;
+    std::vector<double> values;
 };
 
 
-void testHistogram();
+void testPieChart();

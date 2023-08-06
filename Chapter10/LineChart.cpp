@@ -1,8 +1,8 @@
 #include "LineChart.h"
 #include "textfunctions.h"
- 
+
 using namespace std;
- 
+
 /**
  *  Write the necessary junk for the top of the chart
  */
@@ -14,9 +14,9 @@ static void writeTopBoilerPlateOfLineChart( ostream& out ) {
     out<<("google.load('visualization', '1.0', {'packages':['corechart']});\n");
     out<<("google.setOnLoadCallback(drawChart);\n");
     out<<("function drawChart() {\n");
- 
+
 }
- 
+
 /**
  *  Write the necessary junk for the top of the chart
  */
@@ -32,7 +32,7 @@ static void writeBottomBoilerPlateOfLineChart( ostream& out, const string& title
     out<<"</body>\n";
     out<<"</html>";
 }
- 
+
 /**
  *   Write the data of the line chart
  */
@@ -54,42 +54,42 @@ static void writeLineChartData( ostream& out,
     }
     out<<"]);\n";
 }
- 
+
 LineChart::LineChart() :
   title("A LineChart") {
 }
- 
+
 void LineChart::setTitle( const string& t ) {
     title = t;
 }
- 
+
 void LineChart::setSeries( const vector<double>& xVec, const vector<double>& yVec ) {
     x = xVec;
     y = yVec;
 }
- 
+
 void LineChart::writeAsHTML( ostream& out ) const {
     writeTopBoilerPlateOfLineChart( out );
     writeLineChartData( out, x, y );
     writeBottomBoilerPlateOfLineChart( out, title );
 }
- 
+
 void LineChart::writeAsHTML( const string& file ) const {
     ofstream out;
     out.open( file.c_str() );
     writeAsHTML( out );
     out.close();
 }
- 
- 
- 
+
+
+
 //////////////////////////////
 //
 //   TESTS
 //
 //////////////////////////////
- 
- 
+
+
 static void testWriteLineChartData() {
     vector<double> x;
     vector<double> y;
@@ -111,7 +111,7 @@ static void testWriteLineChartData() {
     cout << expected;
     ASSERT( actual==expected );
 }
- 
+
 void testLineChart() {
     TEST( testWriteLineChartData );
 }
