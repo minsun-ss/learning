@@ -10,22 +10,24 @@
 #include "BlackScholesModel.h"
 #include "Histogram.h"
 #include "MonteCarloPricer.h"
+#include "NormalPDF.h"
 
 using namespace std;
 
 
 int main() {
-    testMatlib();
-    testGeometry();
-    testPieChart();
-    testCallOption();
-    testDigitalCallOption();
-    testPutOption();
-    testDigitalPutOption();
-    testBlackScholesModel();
-    testLineChart();
-    testTextFunctions();
-    testHistogram();
-    testMonteCarloPricer();
+    testNormalPDF();
+    // testMatlib();
+    // testGeometry();
+    // testPieChart();
+    // testCallOption();
+    // testDigitalCallOption();
+    // testPutOption();
+    // testDigitalPutOption();
+    // testBlackScholesModel();
+    // testLineChart();
+    // testTextFunctions();
+    // testHistogram();
+    // testMonteCarloPricer();
     return 0;
 }
