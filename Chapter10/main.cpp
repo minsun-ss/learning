@@ -2,7 +2,9 @@
 #include "geometry.h"
 #include "textfunctions.h"
 #include "CallOption.h"
+#include "DigitalCallOption.h"
 #include "PutOption.h"
+#include "DigitalPutOption.h"
 #include "PieChart.h"
 #include "LineChart.h"
 #include "BlackScholesModel.h"
@@ -17,7 +19,9 @@ int main() {
     testGeometry();
     testPieChart();
     testCallOption();
+    testDigitalCallOption();
     testPutOption();
+    testDigitalPutOption();
     testBlackScholesModel();
     testLineChart();
     testTextFunctions();
