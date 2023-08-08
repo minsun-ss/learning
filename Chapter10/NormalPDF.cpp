@@ -6,7 +6,7 @@ const double PI = 3.14159265358979323846;  /* pi */
 
 NormalPDF::NormalPDF() {}
 
-double NormalPDF::normInt(double z) {
+double NormalPDF::evaluate(double z) {
     return exp(-z*z/2) / sqrt(2*PI);
 }
 
@@ -16,10 +16,17 @@ double NormalPDF::normInt(double z) {
 
 void testPDF() {
     NormalPDF npdf;
+    ASSERT_APPROX_EQUAL(npdf.evaluate(1.96), 0.0584, 0.1);
+}
 
-    ASSERT_APPROX_EQUAL(npdf.normInt(1.96), 0.0584, 0.1);
+void testIntegralNormalPDF() {
+    NormalPDF npdf;
+    
+    double actual = integral(npdf, -1.96, 1.96, 1000);
+    ASSERT_APPROX_EQUAL(actual, .95, .001);
 }
 
 void testNormalPDF() {
     TEST(testPDF);
+    TEST(testIntegralNormalPDF);
 }

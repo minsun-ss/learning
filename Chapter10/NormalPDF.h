@@ -1,16 +1,17 @@
 #pragma once
 
 #include "stdafx.h"
+#include "RealFunction.h"
 
 /**
  * Ex. 10.6.2.
  * Write a class NormalPDF and compute its integral from -1.96 to 1.96
  */
 
-class NormalPDF {
+class NormalPDF: public RealFunction {
 public:
     NormalPDF();
-    double normInt(double z);
+    double evaluate(double z);
     
 };
 
