@@ -1,7 +1,8 @@
 #include "chap11.h"
+
 using namespace std;
 
 int main() {
-    cout << "whatever" << endl;
+    testChapter11();
     return 0;
 }
