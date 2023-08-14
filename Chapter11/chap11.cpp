@@ -1,6 +1,11 @@
 #include "chap11.h"
 using namespace std;
 
+Pair::Pair(double _x, double _y) {
+    x = _x;
+    y = _y;
+}
+
 /**
  * Ex. 11.8.1
  */
@@ -28,6 +33,18 @@ void reverseDoubles(double doubles[], int length) {
         doubles[i] = reversed[i];
     }
 }
+/** 
+ * Ex. 11.8.3
+ */
+double meanDistance(std::vector<Pair>* pairs) {
+    std::vector<Pair> p = *pairs;
+    double sum;
+    for (int i=0; i < p.size(); i++) {
+        sum += sqrt(p[i].x * p[i].x + p[i].y * p[i].y);
+    }
+    return sum / p.size();
+}
+
 
 /**
  * TESTS
@@ -47,7 +64,16 @@ void testReverseDoubles() {
     ASSERT(test[0] == 3);
 }
 
+void testMeanDistance() {
+    Pair pair(3, 4);
+    vector<Pair> pairs; 
+    pairs.push_back(pair);
+    double md = meanDistance(&pairs);
+    ASSERT_APPROX_EQUAL(md, 5.0, .001);
+}
+
 void testChapter11() {
     TEST(testSumDoubles);
     TEST(testReverseDoubles);
+    TEST(testMeanDistance);
 }
