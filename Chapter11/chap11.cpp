@@ -49,6 +49,8 @@ double meanDistance(std::vector<Pair>* pairs) {
  * Ex. 11.8.4
  */
 void polarToCartesian(double theta, double r, double* x, double* y) {
+    *x = r * cos(theta);
+    *y = r * sin(theta);
 }
 
 /**
@@ -80,6 +82,11 @@ void testMeanDistance() {
 }
 
 void testPolarToCartesian() {
+    double x = 0; 
+    double y = 0;
+    polarToCartesian(.39444, 13, &x, &y);
+    ASSERT_APPROX_EQUAL(x, 12.002, .01);
+    ASSERT_APPROX_EQUAL(y, 4.996, .01);
 }
 
 void testChapter11() {
