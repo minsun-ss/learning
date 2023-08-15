@@ -66,6 +66,14 @@ void reverseString(char* chars) {
 }
 
 /**
+ * Ex. 11.8.6
+ */
+std::string concatenate(std::string& a, std::string& b) {
+    return a + b;
+}
+
+
+/**
  * TESTS
  */
 
@@ -106,10 +114,17 @@ void testReverseString() {
     reverseString(chars);
 
     ASSERT(chars[0] == 'o');
+    ASSERT(chars[1] == 'l');
+    ASSERT(chars[2] == 'l');
+    ASSERT(chars[3] == 'e');
+    ASSERT(chars[4] == 'h');
+}
 
-    for (int i = 0; i < strlen(chars); i++) {
-        cout << chars[i] << " " << int(chars[i]) << endl;
-    }
+void testConcatenate() {
+    string a = "hello";
+    string b = " world";
+    string c = concatenate(a, b);
+    ASSERT(c == "hello world");
 }
 
 void testChapter11() {
@@ -118,4 +133,5 @@ void testChapter11() {
     TEST(testMeanDistance);
     TEST(testPolarToCartesian);
     TEST(testReverseString);
+    TEST(testConcatenate);
 }

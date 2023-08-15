@@ -14,5 +14,6 @@ void reverseDoubles(double doubles[], int length);
 double meanDistance(std::vector<Pair>* pairs);
 void polarToCartesian(double theta, double r, double* x, double* y);
 void reverseString(char* chars);
+std::string concatenate(std::string& a, std::string& b);
 
 void testChapter11();
