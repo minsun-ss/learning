@@ -54,6 +54,18 @@ void polarToCartesian(double theta, double r, double* x, double* y) {
 }
 
 /**
+ * Ex. 11.8.5
+ */
+void reverseString(char* chars) {
+    int length = strlen(chars)/2;
+    for (int i = 0; i < length; i++) {
+        char temp = chars[i];
+        chars[i] = chars[strlen(chars)-i-1];
+        chars[strlen(chars)-i-1] = temp;
+    }
+}
+
+/**
  * TESTS
  */
 
@@ -89,9 +101,21 @@ void testPolarToCartesian() {
     ASSERT_APPROX_EQUAL(y, 4.996, .01);
 }
 
+void testReverseString() {
+    char chars[] = "hello";
+    reverseString(chars);
+
+    ASSERT(chars[0] == 'o');
+
+    for (int i = 0; i < strlen(chars); i++) {
+        cout << chars[i] << " " << int(chars[i]) << endl;
+    }
+}
+
 void testChapter11() {
     TEST(testSumDoubles);
     TEST(testReverseDoubles);
     TEST(testMeanDistance);
     TEST(testPolarToCartesian);
+    TEST(testReverseString);
 }

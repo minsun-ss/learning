@@ -13,5 +13,6 @@ double sumDoubles(double doubles[], int length);
 void reverseDoubles(double doubles[], int length);
 double meanDistance(std::vector<Pair>* pairs);
 void polarToCartesian(double theta, double r, double* x, double* y);
+void reverseString(char* chars);
 
 void testChapter11();
