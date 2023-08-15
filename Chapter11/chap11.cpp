@@ -72,6 +72,34 @@ std::string concatenate(std::string& a, std::string& b) {
     return a + b;
 }
 
+/**
+ * Ex. 11.8.7
+ */
+int search(char* searchChars, char* sourceChars) {
+    // makes sure searchChars is non null
+    if (strlen(searchChars) == 0) {
+        cout << "No match available with empty search" << endl;
+        return 0;
+    }
+
+    int counter = 0;
+    for (int i = 0; i < strlen(sourceChars); i++) {
+        if (sourceChars[i] == searchChars[0]) {
+            bool flag = true;
+            for (int j = 0; j < strlen(searchChars); j++) {
+                if (sourceChars[i] == searchChars[j]) {
+                    i++; 
+                } else {
+                    flag = false;
+                }
+            }
+            if (flag) {
+                counter++;
+            }
+        }
+    }
+    return counter;
+}
 
 /**
  * TESTS
@@ -127,6 +155,14 @@ void testConcatenate() {
     ASSERT(c == "hello world");
 }
 
+void testSearch() {
+    char searchChars[] = "be";
+    char sourceChars[] = "to be or not to be";
+    ASSERT(search(searchChars, sourceChars)==2);
+    char otherSourceChars[] = "to be or not to bah";
+    ASSERT(search(searchChars, otherSourceChars)==1);
+}
+
 void testChapter11() {
     TEST(testSumDoubles);
     TEST(testReverseDoubles);
@@ -134,4 +170,5 @@ void testChapter11() {
     TEST(testPolarToCartesian);
     TEST(testReverseString);
     TEST(testConcatenate);
+    TEST(testSearch);
 }
