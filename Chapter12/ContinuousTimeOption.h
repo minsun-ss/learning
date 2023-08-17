@@ -3,4 +3,4 @@
 class ContinuousTimeOption {
 public:
     virtual ~ContinuousTimeOption() {};
-}
+};
