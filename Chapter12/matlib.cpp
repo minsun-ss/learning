@@ -1,9 +1,5 @@
 #include "matlib.h"
-
 #include "geometry.h"
-#include "LineChart.h"
-#include "Histogram.h"
-#include "CallOption.h"
 
 using namespace std;
 
@@ -166,28 +162,6 @@ double prctile( const std::vector<double>& v, double percentage ) {
 	return valueBelow + correction;
 }
 
-/**
- *  Convenience method for generating plots
- */
-void plot( const string& file,
-           const vector<double>& x, 
-           const vector<double>& y ) {
-    LineChart lc;
-    lc.setSeries(x,y);
-    lc.writeAsHTML( file );
-}
-
-/**
- *  Convenience method for generating plots
- */
-void hist( const string& file,
-           const vector<double>& data, 
-           int numBuckets ) {
-    Histogram h;
-    h.setData(data);
-    h.setNumBuckets( numBuckets );
-    h.writeAsHTML( file );
-}
 
 const double ROOT_2_PI = sqrt( 2.0 * PI );
 
@@ -421,40 +395,6 @@ static void testIntegralVersion2() {
     ASSERT_APPROX_EQUAL(actual, expected, 0.000001);        
 }
 
-static double integratePayoff(
-	double a,
-	double b,
-	const PathIndependentOption& option) {
-
-	class PayoffFunction : public RealFunction {		
-	public:
-		/*  Member variable */
-		const PathIndependentOption& option;
-		
-		/*  Constructor */
-		PayoffFunction(
-			const PathIndependentOption& option)
-			: option( option ) {
-		}
-
-		/**
-		 *  Overriding function
-		 */
-		double evaluate(double x) {
-			return option.payoff(x);
-		}
-	};
-
-	PayoffFunction integrand(option);
-	return integral(integrand, a, b, 1000);
-}
-
-static void testIntegratePayoff() {
-	CallOption c;
-	c.strike = 0;
-	ASSERT_APPROX_EQUAL(integratePayoff(0,1,c), 0.5, 0.00001);
-}
-
 
 void testMatlib() {
     TEST( testLinspace );
@@ -467,7 +407,4 @@ void testMatlib() {
     TEST( testNormInv );
     TEST( testNormCdf );
     TEST( testPrctile );
-    TEST( testIntegral );
-    TEST( testIntegralVersion2 );
-	TEST(testIntegratePayoff);
 }

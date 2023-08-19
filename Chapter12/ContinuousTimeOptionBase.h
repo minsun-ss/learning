@@ -1,8 +1,6 @@
 #pragma once
 
 #include "ContinuousTimeOption.h"
-#include "BlackScholesModel.h"
-#include "MonteCarloPricer.h"
 
 class ContinuousTimeOptionBase: public ContinuousTimeOption {
 public:
@@ -19,7 +17,6 @@ public:
     void setStrike(double strike) {
         this->strike = strike;
     }
-    double price(const BlackScholesModel& model) const;
 private:
     double maturity;
     double strike;

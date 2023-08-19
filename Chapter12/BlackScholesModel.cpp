@@ -83,28 +83,8 @@ void testRiskNeutralPricePath() {
         exp( bsm.riskFreeRate*2.0)*bsm.stockPrice, 0.5);
 }
 
-void testVisually() {
-    BlackScholesModel bsm;
-    bsm.riskFreeRate = 0.05;
-    bsm.volatility = 0.1;
-    bsm.stockPrice = 100.0;
-    bsm.date = 2.0;
-
-    int nSteps = 1000;
-    double maturity = 4.0;
-
-    vector<double> path = bsm.generatePricePath( maturity,
-                                                 nSteps );
-    double dt = (maturity-bsm.date)/nSteps;
-    vector<double> times = linspace(dt, maturity, nSteps );
-    plot("examplePricePath.html",
-         times,
-         path );
-}
-
 
 void testBlackScholesModel() {
     TEST( testRiskNeutralPricePath );
-    TEST( testVisually );
 }
 

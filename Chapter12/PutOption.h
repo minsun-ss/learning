@@ -7,6 +7,8 @@ public:
     double payoff(
             const std::vector<double>& stockPrices) const;
 
+    double payoff( double endStockPrice ) const;
+
     double price(
             const BlackScholesModel& bsm) const;
     

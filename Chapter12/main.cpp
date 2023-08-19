@@ -1,3 +1,5 @@
+#include "PutOption.h"
+
 int main() {
-    return 0;
+    testPutOption();
 }
