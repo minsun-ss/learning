@@ -1,1 +1,4 @@
 #include "PutOption.h"
+#include "CallOption.h"
+#include "DigitalPutOption.h"
+#include "DigitalCallOption.h"

@@ -25,7 +25,7 @@ double PutOption::price(const BlackScholesModel& bsm) const {
  * Tests
  */
 
-static void testPayoff() {
+static void testPutOptionPayoff() {
     PutOption po;
     po.setStrike(105.0);
     po.setMaturity(2.0);
@@ -34,7 +34,7 @@ static void testPayoff() {
     ASSERT_APPROX_EQUAL(po.payoff(110.0), 0.0, 0.001);
 }
 
-static void testPrice() {
+static void testPutOptionPrice() {
     PutOption po;
     po.setStrike(105.0);
     po.setMaturity(2.0);
@@ -49,6 +49,6 @@ static void testPrice() {
 }
 
 void testPutOption() {
-    TEST(testPayoff);
-    TEST(testPrice);
+    TEST(testPutOptionPayoff);
+    TEST(testPutOptionPrice);
 }
