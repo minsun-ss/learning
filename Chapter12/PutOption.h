@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "BlackScholesModel.h"
 #include "PathIndependentOption.h"
+#include "matlib.h"
 
 class PutOption: public PathIndependentOption {
 public:
