@@ -1,7 +1,11 @@
 #include "DigitalPutOption.h"
 
 double DigitalPutOption::payoff(double stockAtMaturity) const {
-    return 0;
+    if (stockAtMaturity < getStrike()) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 double DigitalPutOption::price(const BlackScholesModel& bsm) const {

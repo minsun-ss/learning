@@ -4,4 +4,6 @@
 int main() {
     testPutOption();
     testCallOption();
+    testDigitalPutOption();
+    testDigitalCallOption();
 }
