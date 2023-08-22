@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "PathDependentOption.h"
+#include "KnockoutOption.h"
 
 /**
  * Asian option with maturity T and strike K. Payoff is determined by
@@ -7,7 +7,7 @@
  * maturity. 
  */
 
-class AsianOption: public PathDependentOption {
+class AsianOption: public KnockoutOption {
 public:
     double payoff(const std::vector<double> stockPrices) const;
 };

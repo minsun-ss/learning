@@ -6,4 +6,5 @@ int main() {
     testCallOption();
     testDigitalPutOption();
     testDigitalCallOption();
+    testAsianCallOption();
 }
