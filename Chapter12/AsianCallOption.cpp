@@ -12,7 +12,7 @@ double AsianCallOption::payoff(const std::vector<double>& stockPrices) const {
  * Tests
  */
 
-static void testAsianOptionPayoff() {
+static void testAsianCallOptionPayoff() {
     AsianCallOption aco;
     aco.setStrike(105.0);
     aco.setMaturity(2.0);
@@ -36,6 +36,6 @@ static void testAvg() {
 }
 
 void testAsianCallOption() {
-    TEST(testAsianOptionPayoff);
+    TEST(testAsianCallOptionPayoff);
     TEST(testAvg);
 }

@@ -3,3 +3,4 @@
 #include "DigitalPutOption.h"
 #include "DigitalCallOption.h"
 #include "AsianCallOption.h"
+#include "AsianPutOption.h"
