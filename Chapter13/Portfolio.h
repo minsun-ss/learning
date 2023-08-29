@@ -1,3 +1,4 @@
+#pragma once
 #include "stdafx.h"
 #include "Priceable.h"
 
@@ -10,3 +11,5 @@ public:
     virtual double price( const BlackScholesModel& model ) const = 0;
     static std::shared_ptr<Portfolio> newInstance();
 };
+
+void testPortfolio(); 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ContinuousTimeOption.h"
+#include "BlackScholesModel.h"
 
 class ContinuousTimeOptionBase: public ContinuousTimeOption {
 public:
@@ -17,7 +18,11 @@ public:
     void setStrike(double strike) {
         this->strike = strike;
     }
+    virtual double price(const BlackScholesModel& model) const;
 private:
     double maturity;
     double strike;
 };
+
+void testContinousTimeOptionBase();
+

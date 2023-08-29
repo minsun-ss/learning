@@ -1,13 +1,25 @@
 #pragma once
-#include "stdafx.h"
+ 
 #include "ContinuousTimeOptionBase.h"
-
-class KnockoutOption: public ContinuousTimeOptionBase {
+ 
+/**
+ *   An option with a barrier
+ */
+class KnockoutOption : public ContinuousTimeOptionBase {
 public:
     virtual ~KnockoutOption() {}
-    virtual double payoff(const std::vector<double>& stockPrices) const = 0;
-
+ 
+    double getBarrier() const {
+        return barrier;
+    }
+ 
+    void setBarrier(double barrier) {
+        this->barrier=barrier;
+    }
+ 
     bool isPathDependent() const {
         return true;
     }
+private:
+    double barrier;
 };

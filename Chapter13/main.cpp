@@ -4,8 +4,5 @@
 int main() {
     testPutOption();
     testCallOption();
-    testDigitalPutOption();
-    testDigitalCallOption();
-    testAsianCallOption();
-    testAsianPutOption();
+    testPortfolio();
 }
