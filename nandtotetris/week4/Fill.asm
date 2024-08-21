@@ -1,0 +1,68 @@
+// Fill the screen with black and white!!!
+// setup
+    @0
+    D=M
+    @R1
+    M=D
+    @SCREEN
+    D=A
+    // R2 contains value of screen location
+    @R2
+    M=D
+    @8192
+    D=A
+    @R3
+    M=D
+(KEYBOARD)
+    @KBD
+    D=M
+    @0
+    M=D
+    @SCREENWHITE
+    D;JEQ
+    @SCREENBLACK
+    D;JGT
+    @KEYBOARD
+    0;JMP
+(SCREENBLACK)
+    @R2
+    A=M
+    M=-1
+    @R2
+    M=M+1
+    D=M
+    @R3
+    M=M-1
+    D=M
+    @SCREENBLACK
+    D;JGT
+    @RESET
+    0;JMP
+(SCREENWHITE)
+    @R2
+    A=M
+    M=0
+    @R2
+    M=M+1
+    D=M
+    @R3
+    M=M-1
+    D=M
+    @SCREENWHITE
+    D;JGT
+    @RESET
+    0;JMP
+(END)
+    @END
+    0;JMP
+(RESET)
+    @SCREEN
+    D=A
+    @R2
+    M=D
+    @8192
+    D=A
+    @R3
+    M=D
+    @KEYBOARD
+    0;JMP
