@@ -1,6 +1,6 @@
 # Self-learning
 
-Just a set of modules worked through on self learning. 
+A set of modules worked through on self learning. More for personal accountability than anything else.
 
 # Finished
 
